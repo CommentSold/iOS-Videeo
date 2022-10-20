@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.author                   = { 'CommentSold Mobile Team' => 'mobile@commentsold.com' }
   spec.platform                 = :ios, "14.0"
   spec.module_name              = "VideeoSDK"
-  spec.source                   = { :http => "https://github.com/CommentSold/iOS-Videeo/releases/download/v0.1.0/VideeoSDK-v0.1.0.xcframework.zip" }
+  spec.source                   = { :http => "https://github.com/CommentSold/iOS-Videeo/releases/download/v#{spec.version}/VideeoSDK-v#{spec.version}.xcframework.zip" }
   spec.preserve_paths           = "VideeoSDK.xcframework"
   spec.ios.vendored_frameworks  = "VideeoSDK.xcframework"
   spec.frameworks               = "AVFoundation"
