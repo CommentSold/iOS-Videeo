@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "ios-videeo",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CommentSold/iOS-Videeo",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a4e52888580e4d340a19799b9634384a279f63e2"
+      }
+    }
+  ],
+  "version" : 2
+}
