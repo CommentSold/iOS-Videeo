@@ -59,5 +59,25 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: VideeoStreamDelegate {}
+extension ViewController: VideeoStreamDelegate {
+    func shopButtonTapped(currentProduct: VideeoProduct?) -> Bool {
+        return false
+    }
+
+    func productOverlayTapped(product: VideeoProduct) -> Bool {
+        return false
+    }
+
+    func productDetailTapped(product: VideeoProduct) -> Bool {
+        return false
+    }
+
+    func streamEnded() -> Bool {
+        return false
+    }
+
+    func userRemovedFromLive() -> Bool {
+        return false
+    }
+}
 
