@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 import VideeoSDK
-
-struct VideeoView: UIViewControllerRepresentable {
-
-    var videeoDelegate: VideeoSDK.VideeoStreamDelegate?
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        return VideeoManager.instance.getLiveStreamViewController(delegate: videeoDelegate) ?? UIViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-
-    }
-}
+//
+//struct VideeoView: UIViewControllerRepresentable {
+//
+//    var videeoDelegate: VideeoSDK.VideeoStreamDelegate?
+//
+//    func makeUIViewController(context: Context) -> UIViewController {
+//        return VideeoManager.instance.getLiveStreamViewController(delegate: videeoDelegate) ?? UIViewController()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+//
+//    }
+//}

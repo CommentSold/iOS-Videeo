@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     }
     
     private func showLiveStream() {
-        if let videeoVC = VideeoManager.instance.getLiveStreamViewController(delegate: self) {
+        if let videeoVC = try? VideeoManager.instance.getLiveStreamViewController(delegate: self) {
             videeoVC.modalPresentationStyle = .fullScreen
             present(videeoVC, animated: true)
         }

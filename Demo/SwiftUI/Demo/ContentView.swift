@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import VideeoSDK
 
 struct ContentView: View {
 
@@ -29,8 +30,10 @@ struct ContentView: View {
 
             }
             .fullScreenCover(isPresented: $showLiveStream) {
-                VideeoView(videeoDelegate: appEnvironment)
+                try? VideeoManager.instance.getLiveStreamView()
                     .ignoresSafeArea()
+                
+                
             }
     }
 }
