@@ -30,8 +30,10 @@
     self.startButton.center = self.view.center;
     [self.startButton addTarget:self action:@selector(showLive) forControlEvents:UIControlEventTouchUpInside];
     
-    VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo" environment:VideeoEnvironmentStaging];
-    VideeoUser *user = [[VideeoUser alloc] initWithFirstName:@"Jared" lastName:@"Green" facebookId:@"123" instagramId:nil tiktokId:nil];
+    VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo" environment:VideeoEnvironmentStaging allowsPictureInPicturePlayback:true];
+    
+    VideeoUser *user = [[VideeoUser alloc] initWithFirstName:@"Jared" lastName:@"Green" profileURL:@"" facebookId:@"123" instagramId:nil tiktokId:nil];
+   
     [[VideeoManager instance] initializeWithConfig:config videeoUser:user];
     
     __weak ViewController *weakSelf = self;
@@ -63,9 +65,15 @@
 
 - (void)showLive {
     
-    VideeoViewController *vc = [[VideeoManager instance] getLiveStreamViewControllerWithDelegate:self];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:vc animated:true completion:nil];
+    NSError *error;
+    UIViewController *vc = [[VideeoManager instance] getLiveStreamViewControllerWithDelegate:self error:&error];
+    
+    if (error == nil) {
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:true completion:nil];
+    } else {
+        NSLog(@"%@", error.localizedDescription);
+    }
 
 }
 

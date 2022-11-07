@@ -13,7 +13,6 @@
 		F7FC73812902C65A001F7DD7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FC73802902C65A001F7DD7 /* Preview Assets.xcassets */; };
 		F7FC73892902C6C3001F7DD7 /* VideeoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = F7FC73882902C6C3001F7DD7 /* VideeoSDK */; };
 		F7FC738B2902C893001F7DD7 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC738A2902C893001F7DD7 /* AppEnvironment.swift */; };
-		F7FC738F2902D770001F7DD7 /* VideeoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC738E2902D770001F7DD7 /* VideeoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +22,6 @@
 		F7FC737D2902C65A001F7DD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7FC73802902C65A001F7DD7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F7FC738A2902C893001F7DD7 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
-		F7FC738E2902D770001F7DD7 /* VideeoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideeoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +60,6 @@
 				F7FC737D2902C65A001F7DD7 /* Assets.xcassets */,
 				F7FC737F2902C65A001F7DD7 /* Preview Content */,
 				F7FC738A2902C893001F7DD7 /* AppEnvironment.swift */,
-				F7FC738E2902D770001F7DD7 /* VideeoView.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -153,7 +150,6 @@
 			files = (
 				F7FC737C2902C659001F7DD7 /* ContentView.swift in Sources */,
 				F7FC737A2902C659001F7DD7 /* DemoApp.swift in Sources */,
-				F7FC738F2902D770001F7DD7 /* VideeoView.swift in Sources */,
 				F7FC738B2902C893001F7DD7 /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
