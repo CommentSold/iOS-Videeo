@@ -67,8 +67,13 @@
     
     NSError *error;
     UIViewController *vc = [[VideeoManager instance] getLiveStreamViewControllerWithDelegate:self error:&error];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:vc animated:true completion:nil];
+    
+    if (error == nil) {
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:true completion:nil];
+    } else {
+        NSLog(@"%@", error.localizedDescription);
+    }
 
 }
 
