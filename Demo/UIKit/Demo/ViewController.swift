@@ -18,7 +18,12 @@ class ViewController: UIViewController {
         //The user parameter is option in the initialize function and can be supplied
         //directly to the VideeoManager at any point in the app lifecycle by calling setVideeoUser.
         let config = VideeoConfig(shopID: "jaredvideeo", environment: .staging)
-        let videeoUser = VideeoUser(firstName: "Jared", lastName: "Green", facebookId: "123", instagramId: "456", tiktokId: "789")
+        let videeoUser = VideeoUser(firstName: "Jared",
+                                    lastName: "Green",
+                                    profileURL: "https://picsum.photos/200",
+                                    facebookId: "123",
+                                    instagramId: "456",
+                                    tiktokId: "789")
         VideeoManager.instance.initialize(config: config, videeoUser: videeoUser)
         
         //Register for videeo status events so the app will be notifed if a live stream starts or stops.
@@ -79,5 +84,7 @@ extension ViewController: VideeoStreamDelegate {
     func userRemovedFromLive() -> Bool {
         return false
     }
+
+    func unhandledException(error: VideeoSDK.VideeoError) {}
 }
 
