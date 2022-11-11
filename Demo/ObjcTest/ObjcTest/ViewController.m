@@ -32,7 +32,12 @@
     
     VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo" environment:VideeoEnvironmentStaging allowsPictureInPicturePlayback:true];
     
-    VideeoUser *user = [[VideeoUser alloc] initWithFirstName:@"Jared" lastName:@"Green" profileURL:@"" facebookId:@"123" instagramId:nil tiktokId:nil];
+    VideeoUser *user = [[VideeoUser alloc] initWithFirstName:@"Jared"
+                                                    lastName:@"Green"
+                                                  profileURL:@"https://picsum.photos/200"
+                                                  facebookId:@"123"
+                                                 instagramId:nil
+                                                    tiktokId:nil];
    
     [[VideeoManager instance] initializeWithConfig:config videeoUser:user];
     
@@ -54,7 +59,7 @@
     
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Watch live stream?" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [alertVC addAction:[UIAlertAction actionWithTitle:@"Watch live stream?" style:UIAlertActionStyleDefault  handler:^(UIAlertAction *action){
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"Watch" style:UIAlertActionStyleDefault  handler:^(UIAlertAction *action){
         [self showLive];
     }]];
     
@@ -98,7 +103,6 @@
     return false;
 }
 
-
-
+- (void)unhandledExceptionWithError:(enum VideeoError)error {}
 
 @end
