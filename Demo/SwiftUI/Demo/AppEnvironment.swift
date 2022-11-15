@@ -17,7 +17,7 @@ class AppEnvironment: ObservableObject {
         //Configure the Videeo Manager with the shop name, environment and user.
         //The user parameter is option in the initialize function and can be supplied
         //directly to the VideeoManager at any point in the app lifecycle by calling setVideeoUser.
-        let config = VideeoConfig(shopID: "jaredvideeo", environment: .staging)
+        let config = VideeoConfig(shopID: "jaredvideeo", environment: .test)
         let videeoUser = VideeoUser(firstName: "Jared",
                                     lastName: "Green",
                                     profileURL: "https://picsum.photos/200",

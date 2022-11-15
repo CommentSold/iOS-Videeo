@@ -30,7 +30,7 @@
     self.startButton.center = self.view.center;
     [self.startButton addTarget:self action:@selector(showLive) forControlEvents:UIControlEventTouchUpInside];
     
-    VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo" environment:VideeoEnvironmentStaging allowsPictureInPicturePlayback:true];
+    VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo" environment:VideeoEnvironmentTest allowsPictureInPicturePlayback:true];
     
     VideeoUser *user = [[VideeoUser alloc] initWithFirstName:@"Jared"
                                                     lastName:@"Green"
