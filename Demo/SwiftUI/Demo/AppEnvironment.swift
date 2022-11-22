@@ -43,11 +43,7 @@ extension AppEnvironment: VideeoStreamDelegate {
         return false
     }
 
-    func productOverlayTapped(product: VideeoProduct) -> Bool {
-        return false
-    }
-
-    func productDetailTapped(product: VideeoProduct) -> Bool {
+    func productTapped(product: VideeoProduct) -> Bool {
         return false
     }
 
