@@ -82,12 +82,7 @@
 
 }
 
-
-- (BOOL)productDetailTappedWithProduct:(id<VideeoProduct> _Nonnull)product {
-    return false;
-}
-
-- (BOOL)productOverlayTappedWithProduct:(id<VideeoProduct> _Nonnull)product {
+- (BOOL)productTappedWithProduct:(id<VideeoProduct> _Nonnull)product {
     return false;
 }
 

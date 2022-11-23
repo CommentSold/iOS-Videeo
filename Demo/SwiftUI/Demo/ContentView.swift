@@ -30,7 +30,7 @@ struct ContentView: View {
 
             }
             .fullScreenCover(isPresented: $showLiveStream) {
-                try? VideeoManager.instance.getLiveStreamView()
+                try? VideeoManager.instance.getLiveStreamView(delegate: appEnvironment)
                     .ignoresSafeArea()
                 
                 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                     = "VideeoSDK"
-  spec.version                  = "0.1.4"
+  spec.version                  = "0.1.5"
   spec.summary                  = "VideeoSDK"
   spec.homepage                 = "https://github.com/CommentSold/iOS-Videeo"
   spec.license                  = { :text => "Copyright 2022 CommentSold, LLC.", :type => "Copyright" }
