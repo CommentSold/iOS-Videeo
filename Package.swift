@@ -14,8 +14,8 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(name: "VideeoSDK",
-                      url: "https://github.com/CommentSold/iOS-Videeo/releases/download/v0.1.5/VideeoSDK-v0.1.5.xcframework.zip",
-                      checksum: "88ca11660d516d4d576a6e8894bd0af91f0521c746397359c010f34de3a5a5d1"),
+                      url: "https://github.com/CommentSold/iOS-Videeo/releases/download/v0.2.0/VideeoSDK-v0.2.0.xcframework.zip",
+                      checksum: ""c651312382d0b7cac888e21928aae6b04ac941eb5db8efa5a9d35fd526b94329),
     ]
     
 )

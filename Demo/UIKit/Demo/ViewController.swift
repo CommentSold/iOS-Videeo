@@ -40,7 +40,11 @@ class ViewController: UIViewController {
     @IBAction func showLive(_ sender: Any) {
         showLiveStream()
     }
-    
+
+    @IBAction func showReplays(_ sender: Any) {
+        showReplays()
+    }
+
     private func alertStreamIsLive() {
         guard self.presentedViewController == nil else { return }
         
@@ -57,6 +61,13 @@ class ViewController: UIViewController {
     
     private func showLiveStream() {
         if let videeoVC = try? VideeoManager.instance.getLiveStreamViewController(delegate: self) {
+            videeoVC.modalPresentationStyle = .fullScreen
+            present(videeoVC, animated: true)
+        }
+    }
+
+    private func showReplays() {
+        if let videeoVC = try? VideeoManager.instance.getReplaysViewController(delegate: self) {
             videeoVC.modalPresentationStyle = .fullScreen
             present(videeoVC, animated: true)
         }

@@ -12,6 +12,7 @@ struct ContentView: View {
 
     @EnvironmentObject var appEnvironment: AppEnvironment
     @State var showLiveStream = false
+    @State var showReplays = false
 
     var body: some View {
         VStack {
@@ -19,6 +20,10 @@ struct ContentView: View {
                 .font(.system(.largeTitle))
             Button("Show Live") {
                 showLiveStream = true
+            }
+            .padding()
+            Button("Show Replays") {
+                showReplays = true
             }
             .padding()
         }
@@ -34,6 +39,9 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 
+            }
+            .fullScreenCover(isPresented: $showReplays) {
+                try? VideeoManager.instance.getReplaysView(delegate: appEnvironment)
             }
     }
 }
