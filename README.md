@@ -4,7 +4,7 @@ This library is for embedding video streams from the Videeo commerce platform in
 
 # Prerequisites
 
-To integrate Videeo streams into your application, you must have an active account.  To create an account go to (https://www.videeo.live/get-started/)
+To integrate Videeo streams into your application, you must have an active account. To create an account go to (https://www.videeo.live/get-started/)
 
 # Requirements
 
@@ -37,7 +37,7 @@ Add VideeoSDK in your Podfile: `pod VideeoSDK` and then run `pod install`.
 
 - Download the SDK binary from the latest release and unzip the XCFramework into your project structure.
 - Open your Xcode project, select your project file, and select your app target and the General tab.
-- Drag the unzipped VideoSDK.xcframework into the section of the General tab called Frameworks, Libraries, and Embedded Content.  Make sure you select Embed and Sign.
+- Drag the unzipped VideoSDK.xcframework into the section of the General tab called Frameworks, Libraries, and Embedded Content. Make sure you select Embed and Sign.
 - Your project should look like the following:
 ![Screen Shot 2022-10-24 at 9 07 16 AM](https://user-images.githubusercontent.com/1322203/197532729-c3d23bd0-912a-4b01-88ab-1dd1bcaba7ee.png)
 
@@ -55,11 +55,11 @@ To initialize the Videeo SDK you will need the shop ID.
 - Click the `Get Embed Code` button.  
 - Copy the `shopName` value from the script tag.
 
-The `VideeoManager` is a singleton class that exposes all of the public APIs for the Videeo SDK.  Before calling any of the `VideeoManager` functions, you must first call the `initialize` function and pass a `VideeoConfig`.
+The `VideeoManager` is a singleton class that exposes all of the public APIs for the Videeo SDK. Before calling any of the `VideeoManager` functions, you must first call the `initialize` function and pass a `VideeoConfig`.
 
 ## Detecting Live Streams
 
-Once initialized, the `VideeoManger` will begin checking to see if a live event for your shop is currently running.  When the `VideeoManger` detects the live stream has started or stopped, it will dispatch a `videeoLiveStatusChanged` notification with the updated state.  You can also check the `VideeoManager.instance.isLive` property at any time to check the current status.
+Once initialized, the `VideeoManger` will begin checking to see if a live event for your shop is currently running. When the `VideeoManger` detects the live stream has started or stopped, it will dispatch a `videeoLiveStatusChanged` notification with the updated state. You can also check the `VideeoManager.instance.isLive` property at any time to check the current status.
 ```
 NotificationCenter.default.addObserver(
 	forName: .videeoLiveStatusChanged,
@@ -71,7 +71,7 @@ NotificationCenter.default.addObserver(
 	}
 ```
 
-When the app detects that a live stream is running, you can use the `VideeoManager.instance.getLiveStreamViewController` function to create the `VideeoViewController`.  We recommend presenting the `VideeoViewController` fullscreen for the best user experience.  
+When the app detects that a live stream is running, you can use the `VideeoManager.instance.getLiveStreamViewController` function to create the `VideeoViewController`. We recommend presenting the `VideeoViewController` fullscreen for the best user experience. This same functionality is also available to SwiftUI by calling `VideeoManager.instance.getLiveStreamView`.
 
 ## Override Default Behavior of the Stream Viewer
 
@@ -94,20 +94,20 @@ func shopButtonTapped(currentProduct: VideeoProduct?) -> Bool
 func productOverlayTapped(product: VideeoProduct) -> Bool
 
 /// The productDetailTapped function will be triggered when the user taps on a product in the
-/// bottom products tray.  The default behavior will show the product details in an SFSafariViewController.
+/// bottom products tray. The default behavior will show the product details in an SFSafariViewController.
 /// Return true to override the default behavior.
 /// - Parameter product: The tapped product.
 /// - Returns: Boolean indicating if the host app is overriding the default behavior.
 func productDetailTapped(product: VideeoProduct) -> Bool
 
-/// The streamEnded function is called when the current stream ends.  The default behavior
+/// The streamEnded function is called when the current stream ends. The default behavior
 /// will present a dialog indicating that the live stream has ended, and allow the user to dismiss
-/// the VideeoViewController.  Return true to override the default behavior.
+/// the VideeoViewController. Return true to override the default behavior.
 /// - Returns: Boolean indicating if the host app is overriding the default behavior.
 func streamEnded() -> Bool
 
 /// The userRemovedFromLive function is triggered when the user has been blocked by the shop
-/// admin for bad behavior.  The default behavior is to do nothing.  Return true to override the default behavior.
+/// admin for bad behavior. The default behavior is to do nothing. Return true to override the default behavior.
 /// - Returns: Boolean indicating if the host app is overriding the default behavior.
 func userRemovedFromLive() -> Bool
 
@@ -117,3 +117,7 @@ func userRemovedFromLive() -> Bool
 /// - Returns: Boolean indicating if the host app is overriding the default behavior.
 func unhandledException(error: VideeoError)
 ```
+
+## Videeo Stream Replays
+
+Replays are Videeo streams saved for later consumption. To display the list of replays, you can call the VideeoManager.instance.getReplaysViewController. The replays view controller will display the list of replays and allow the user to watch a specific replay. This same functionality is also available to SwiftUI by calling VideeoManager.instance.getReplaysView.
