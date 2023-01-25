@@ -9,17 +9,20 @@ import SwiftUI
 import VideeoSDK
 
 struct ContentView: View {
-
     @EnvironmentObject var appEnvironment: AppEnvironment
-    @State var showLiveStream = false
-    @State var showReplays = false
+    @ObservedObject var contentViewModel: ContentViewModel
+    @State private var showReplays = false
+
+    init(contentViewModel: ContentViewModel) {
+        self.contentViewModel = contentViewModel
+    }
 
     var body: some View {
         VStack {
             Text("Videeo Demo")
                 .font(.system(.largeTitle))
             Button("Show Live") {
-                showLiveStream = true
+                contentViewModel.showLiveStream = true
             }
             .padding()
             Button("Show Replays") {
@@ -29,25 +32,22 @@ struct ContentView: View {
         }
             .alert("Watch live stream?", isPresented: $appEnvironment.showLiveStreamAlert) {
                 Button("OK") {
-                    showLiveStream = true
+                    contentViewModel.showLiveStream = true
                 }
                 Button("Cancel", role: .cancel) {}
-
             }
-            .fullScreenCover(isPresented: $showLiveStream) {
-                try? VideeoManager.instance.getLiveStreamView(delegate: appEnvironment)
+            .fullScreenCover(isPresented: $contentViewModel.showLiveStream) {
+                try? VideeoManager.instance.getLiveStreamView(delegate: contentViewModel)
                     .ignoresSafeArea()
-                
-                
             }
             .fullScreenCover(isPresented: $showReplays) {
-                try? VideeoManager.instance.getReplaysView(delegate: appEnvironment)
+                try? VideeoManager.instance.getReplaysView(delegate: contentViewModel)
             }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(contentViewModel: ContentViewModel())
     }
 }

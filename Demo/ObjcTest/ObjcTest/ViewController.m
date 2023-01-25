@@ -82,13 +82,15 @@
     }
 }
 
-- (BOOL)productTappedWithProduct:(id<VideeoProduct> _Nonnull)product {
-    return false;
+- (UIViewController*)productTappedWithProduct:(id<VideeoProduct> _Nonnull)product {
+    return nil;
 }
 
-- (BOOL)shopButtonTappedWithCurrentProduct:(id<VideeoProduct> _Nullable)currentProduct {
-    return false;
+- (void)close {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
+
+- (void)userAuthenticationRequired {}
 
 - (BOOL)streamEnded {
     return false;
@@ -97,7 +99,5 @@
 - (BOOL)userRemovedFromLive {
     return false;
 }
-
-- (void)unhandledExceptionWithError:(enum VideeoError)error {}
 
 @end

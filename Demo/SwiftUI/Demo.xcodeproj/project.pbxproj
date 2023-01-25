@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7601DA7298D46DB0024AFB0 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7601DA6298D46DB0024AFB0 /* ContentViewModel.swift */; };
 		F7FC737A2902C659001F7DD7 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC73792902C659001F7DD7 /* DemoApp.swift */; };
 		F7FC737C2902C659001F7DD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC737B2902C659001F7DD7 /* ContentView.swift */; };
 		F7FC737E2902C65A001F7DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FC737D2902C65A001F7DD7 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7601DA6298D46DB0024AFB0 /* ContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		F7FC73762902C659001F7DD7 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FC73792902C659001F7DD7 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		F7FC737B2902C659001F7DD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,11 +57,12 @@
 		F7FC73782902C659001F7DD7 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				F7FC73792902C659001F7DD7 /* DemoApp.swift */,
-				F7FC737B2902C659001F7DD7 /* ContentView.swift */,
-				F7FC737D2902C65A001F7DD7 /* Assets.xcassets */,
-				F7FC737F2902C65A001F7DD7 /* Preview Content */,
 				F7FC738A2902C893001F7DD7 /* AppEnvironment.swift */,
+				F7FC737D2902C65A001F7DD7 /* Assets.xcassets */,
+				F7FC737B2902C659001F7DD7 /* ContentView.swift */,
+				F7601DA6298D46DB0024AFB0 /* ContentViewModel.swift */,
+				F7FC73792902C659001F7DD7 /* DemoApp.swift */,
+				F7FC737F2902C65A001F7DD7 /* Preview Content */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7601DA7298D46DB0024AFB0 /* ContentViewModel.swift in Sources */,
 				F7FC737C2902C659001F7DD7 /* ContentView.swift in Sources */,
 				F7FC737A2902C659001F7DD7 /* DemoApp.swift in Sources */,
 				F7FC738B2902C893001F7DD7 /* AppEnvironment.swift in Sources */,
