@@ -76,13 +76,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: VideeoStreamDelegate {
-    func shopButtonTapped(currentProduct: VideeoProduct?) -> Bool {
-        return false
+    func productTapped(product: VideeoProduct) -> UIViewController? {
+        return nil
     }
 
-    func productTapped(product: VideeoProduct) -> Bool {
-        return false
+    func close() {
+        dismiss(animated: true)
     }
+
+    func userAuthenticationRequired() {}
 
     func streamEnded() -> Bool {
         return false
@@ -91,7 +93,5 @@ extension ViewController: VideeoStreamDelegate {
     func userRemovedFromLive() -> Bool {
         return false
     }
-
-    func unhandledException(error: VideeoSDK.VideeoError) {}
 }
 

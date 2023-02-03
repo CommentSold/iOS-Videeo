@@ -37,24 +37,3 @@ class AppEnvironment: ObservableObject {
             }
     }
 }
-
-extension AppEnvironment: VideeoStreamDelegate {
-    func shopButtonTapped(currentProduct: VideeoProduct?) -> Bool {
-        return false
-    }
-
-    func productTapped(product: VideeoProduct) -> Bool {
-        return false
-    }
-
-    func streamEnded() -> Bool {
-        return false
-    }
-
-    func userRemovedFromLive() -> Bool {
-        return false
-    }
-
-    func unhandledException(error: VideeoSDK.VideeoError) {}
-}
-

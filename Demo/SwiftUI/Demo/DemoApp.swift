@@ -11,10 +11,11 @@ import SwiftUI
 struct DemoApp: App {
 
     @StateObject var appEnvironment = AppEnvironment()
+    @StateObject var contentViewModel = ContentViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(contentViewModel: contentViewModel)
                 .environmentObject(appEnvironment)
         }
     }

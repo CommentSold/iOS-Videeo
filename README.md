@@ -73,49 +73,39 @@ NotificationCenter.default.addObserver(
 
 When the app detects that a live stream is running, you can use the `VideeoManager.instance.getLiveStreamViewController` function to create the `VideeoViewController`. We recommend presenting the `VideeoViewController` fullscreen for the best user experience. This same functionality is also available to SwiftUI by calling `VideeoManager.instance.getLiveStreamView`.
 
-## Override Default Behavior of the Stream Viewer
+## VideeoStreamDelegate
 
-To override the default behavior of the `VideeoViewController`, you can provide a `VideeoStreamDelegate` to the `getLiveStreamViewController` function. To override the default behavior, you simply need to return `true` from the delegate functions.
+The videeo stream delegate allows the host app to react to events that happen in stream viewer. The host app must provide a `VideeoStreamDelegate` when presenting a Videeo stream.
 ```
-/// The shopButtonTapped function will be triggered when the user taps on the shop button.
-/// The default behavior will open the bottom products tray and highlight the current product.
-/// Return true to override the default behavior.
-/// - Parameter currentProduct: The product that is currently being shown in the
-///  product overlay.
-/// - Returns: Boolean indicating if the host app is overriding the default behavior.
-func shopButtonTapped(currentProduct: VideeoProduct?) -> Bool
+/// The productTapped function will be triggered when the user taps on the product, either
+/// in the product overlay or in the bottom product tray.
+/// The default behavior will show the product details in a web view.
+/// To override, simply return your own custom UIViewController.
+/// - Parameter product: The product that has been selected.
+/// - Returns: A view controller to show when a product in the botton tray is tapped.
+/// If no view controller is provided, then a selected product will be shown in a web view..
+func productTapped(product: VideeoProduct) -> UIViewController?
 
+/// The closeTapped function will be triggered when the it is time to close the stream viewer.
+/// Since the host app has presented the stream viewer, the host app will be responsible
+/// to close the stream viewer in the appropriate manner.
+func closeTapped()
 
-/// The productOverlayTapped function will be triggered when the user taps on the product overlay.
-/// The default behavior will show the overlay product details in an SFSafariViewController.
-/// Return true to override the default behavior.
-/// - Parameter product: The product that is currently being shown in the product overlay.
-/// - Returns: Boolean indicating if the host app is overriding the default behavior.
-func productOverlayTapped(product: VideeoProduct) -> Bool
+/// A guest user has performed an action that requires authentication, like trying to comment
+/// on a live stream.  This delegate function provides an opportunity for the host app
+/// to prompt the user for authentication.
+func userAuthenticationRequired()
 
-/// The productDetailTapped function will be triggered when the user taps on a product in the
-/// bottom products tray. The default behavior will show the product details in an SFSafariViewController.
-/// Return true to override the default behavior.
-/// - Parameter product: The tapped product.
-/// - Returns: Boolean indicating if the host app is overriding the default behavior.
-func productDetailTapped(product: VideeoProduct) -> Bool
-
-/// The streamEnded function is called when the current stream ends. The default behavior
+/// The streamEnded function is called when the current stream ends.  The default behavior
 /// will present a dialog indicating that the live stream has ended, and allow the user to dismiss
-/// the VideeoViewController. Return true to override the default behavior.
+/// the videeo view controller.  Return true to override the default behavior.
 /// - Returns: Boolean indicating if the host app is overriding the default behavior.
 func streamEnded() -> Bool
 
 /// The userRemovedFromLive function is triggered when the user has been blocked by the shop
-/// admin for bad behavior. The default behavior is to do nothing. Return true to override the default behavior.
+/// admin for bad behavior.  The default behavior is to do nothing.  Return true to override the default behavior.
 /// - Returns: Boolean indicating if the host app is overriding the default behavior.
 func userRemovedFromLive() -> Bool
-
-/// The unhandledException function will be triggered when the SDK cannot reasonably handle
-/// an error condition.
-/// - Parameter error: The VideeoError that was not handled by the Videeo SDK.
-/// - Returns: Boolean indicating if the host app is overriding the default behavior.
-func unhandledException(error: VideeoError)
 ```
 
 ## Videeo Stream Replays
