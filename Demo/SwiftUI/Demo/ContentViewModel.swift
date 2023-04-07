@@ -18,7 +18,7 @@ extension ContentViewModel: VideeoStreamDelegate {
         return nil
     }
 
-    func closeTapped() {
+    func close() {
         showLiveStream = false
     }
 
