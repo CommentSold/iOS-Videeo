@@ -4,7 +4,14 @@ This library is for embedding video streams from the Videeo commerce platform in
 
 # Prerequisites
 
-To integrate Videeo streams into your application, you must have an active account. To create an account go to (https://www.videeo.live/get-started/)
+To integrate Videeo streams into your application, you must have an active account with a shop ID. 
+
+- [Create an account](https://www.videeo.live/get-started/).
+- Get the shop ID
+  - [Login to admin dasboard](https://go.videeo.com).
+  - Click the `Connect Channel` link.
+  - Click the `Get Embed Code` button.  
+  - Copy the `shopName` value from the script tag.
 
 # Requirements
 
@@ -18,7 +25,7 @@ Videeo SDK is compatible with:
 
 The Videeo SDK can be added via Swift Package Manager, CocoaPods, or manually imported.
 
-## SPM
+## Swift Package Mananger
 
 In your Xcode project, select File > Swift Packages > Add Package Dependency and enter the following URL: 
 `https://github.com/CommentSold/iOS-Videeo/`
@@ -35,7 +42,7 @@ Add VideeoSDK in your Podfile: `pod VideeoSDK` and then run `pod install`.
 
 ## Manual XCFramework Integration
 
-- Download the SDK binary from the latest release and unzip the XCFramework into your project structure.
+- Download the SDK binary from the latest [release](https://github.com/CommentSold/iOS-Videeo/releases), and unzip the XCFramework into your project structure.
 - Open your Xcode project, select your project file, and select your app target and the General tab.
 - Drag the unzipped VideoSDK.xcframework into the section of the General tab called Frameworks, Libraries, and Embedded Content. Make sure you select Embed and Sign.
 - Your project should look like the following:
@@ -43,21 +50,21 @@ Add VideeoSDK in your Podfile: `pod VideeoSDK` and then run `pod install`.
 
 # Using the Videeo SDK
 
-## Sample Code
-
-There are example projects for both Swift (UIKit and SwiftUI) and Obj-c in the Demo folder for this repo.
-
 ## Initialization
 
-To initialize the Videeo SDK you will need the shop ID.
+The `VideeoManager` is a singleton class that exposes all of the public APIs for the Videeo SDK. Before calling any of the `VideeoManager` functions, you must first call the `initialize` function and pass a `VideeoConfig` and optional `VideeoUser`. The `VideeoConfig` is where you will specify the shop ID, which environment you want to use (production vs. test), and if your app supports picture-in-picture. The `VideeoUser` is how the host app provides the identity of the user to the Videeo SDK. The `Videeo User` can be supplied at initialization, and can be upated at any time during the lifecyce of the app if the users identity changes. If no user data is supplied to the Videeo SDK, then the comment features will be disabled when viewing a live stream. 
+
+## Live Streams
+
+### Start a Live Stream
+ 
 - Log in to the admin dashboard (https://go.videeo.com).
-- Click the `Connect Channel` link.
-- Click the `Get Embed Code` button.  
-- Copy the `shopName` value from the script tag.
+- Click on the `Go Live` tab.
+- Enter the title and decription for the live.
+- Select where you want to broadcast the live stream.
+- Click the `Go Live` button.
 
-The `VideeoManager` is a singleton class that exposes all of the public APIs for the Videeo SDK. Before calling any of the `VideeoManager` functions, you must first call the `initialize` function and pass a `VideeoConfig`.
-
-## Detecting Live Streams
+### Show the Live Stream in your App.
 
 Once initialized, the `VideeoManger` will begin checking to see if a live event for your shop is currently running. When the `VideeoManger` detects the live stream has started or stopped, it will dispatch a `videeoLiveStatusChanged` notification with the updated state. You can also check the `VideeoManager.instance.isLive` property at any time to check the current status.
 ```
@@ -71,11 +78,11 @@ NotificationCenter.default.addObserver(
 	}
 ```
 
-When the app detects that a live stream is running, you can use the `VideeoManager.instance.getLiveStreamViewController` function to create the `VideeoViewController`. We recommend presenting the `VideeoViewController` fullscreen for the best user experience. This same functionality is also available to SwiftUI by calling `VideeoManager.instance.getLiveStreamView`.
+Once the app detects that a live stream is running, you can use the `getLiveStreamViewController` or `getLiveStreamView` functions to get a UIViewController or SwiftUI view respectively from the `VideeoManager`. We recommend presenting the stream viewer fullscreen for the best user experience.
 
-## VideeoStreamDelegate
+## Stream Viewer Customization.
 
-The videeo stream delegate allows the host app to react to events that happen in stream viewer. The host app must provide a `VideeoStreamDelegate` when presenting a Videeo stream.
+The `VideeoStreamDelegate` allows the host app to react to events that happen in stream viewer. Each of the following functions represent key integration points, where your app can both be notified and/or override the default behavior of the stream viewer.
 ```
 /// The productTapped function will be triggered when the user taps on the product, either
 /// in the product overlay or in the bottom product tray.
@@ -108,6 +115,15 @@ func streamEnded() -> Bool
 func userRemovedFromLive() -> Bool
 ```
 
-## Videeo Stream Replays
+## Replay Streams
 
-Replays are Videeo streams saved for later consumption. To display the list of replays, you can call the VideeoManager.instance.getReplaysViewController. The replays view controller will display the list of replays and allow the user to watch a specific replay. This same functionality is also available to SwiftUI by calling VideeoManager.instance.getReplaysView.
+Replays are Videeo streams saved for later consumption. To display the list of replays, there are two options. 
+- Call `getReplaysViewController` or `getReplaysView` to get a UIViewController or SwiftUI view respectively. This replays view will display the list of replays. When the user taps on a replay, the stream viewer will automatically be shown, allowing the user to watch the selected replay.
+
+- Call `getReplayStreams` to get a page of replays that the host app can use to displays it's own list of replays. Each page consists of a boolean indicating if there are additional replays left to be read and an array of `VideeoStream` objects. The last `VideeoStream` object can be used to read the next page of replays. When a replay is selected `getReplayViewController` or `getReplayView` can be used to get the stream viewer to display the replay.
+
+## Example Integrations
+
+- [Swift/SwiftUI Example](https://github.com/CommentSold/iOS-Videeo/tree/main/Demo/SwiftUI)
+- [Swift/UIKit Example](https://github.com/CommentSold/iOS-Videeo/tree/main/Demo/UIKit)
+- [Objective-C/UIKit Example](https://github.com/CommentSold/iOS-Videeo/tree/main/Demo/ObjcTest)
