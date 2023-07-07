@@ -11,7 +11,7 @@ To integrate Videeo streams into your application, you must have an active accou
   - [Login to admin dasboard](https://go.videeo.com).
   - Click the `Connect Channel` link.
   - Click the `Get Embed Code` button.  
-  - Copy the `shopName` value from the script tag.
+  - Copy the `shopName` value from the script tag. This value is your shop ID and will be used to configure the Videeo SDK.
 
 # Requirements
 
