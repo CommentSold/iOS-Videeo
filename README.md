@@ -52,7 +52,7 @@ Add VideeoSDK in your Podfile: `pod VideeoSDK` and then run `pod install`.
 
 ## Initialization
 
-The `VideeoManager` is a singleton class that exposes all of the public APIs for the Videeo SDK. Before calling any of the `VideeoManager` functions, you must first call the `initialize` function and pass a `VideeoConfig` and optional `VideeoUser`. The `VideeoConfig` is where you will specify the shop ID, which environment you want to use (production vs. test), and if your app supports picture-in-picture. The `VideeoUser` is how the host app provides the identity of the user to the Videeo SDK. The `Videeo User` can be supplied at initialization, and can be upated at any time during the lifecyce of the app if the users identity changes. If no user data is supplied to the Videeo SDK, then the comment features will be disabled when viewing a live stream. 
+The `VideeoManager` is a singleton class that exposes all of the public APIs for the Videeo SDK. Before calling any of the `VideeoManager` functions, you must first call the `initialize` function and pass a `VideeoConfig` and optional `VideeoUser`. The `VideeoConfig` is where you will specify the shop ID, locale, currency, environment (production vs. test), and if your app supports picture-in-picture. The Videeo SDK is localized into English, Spanish, German, French, Hungarian, Italian, Polish, and Portuguese. It currently only supports the USD currency. The `VideeoUser` is how the host app provides the identity of the user to the Videeo SDK. The `Videeo User` can be supplied at initialization, and can be upated at any time during the lifecyce of the app if the users identity changes. If no user data is supplied to the Videeo SDK, then the comment features will be disabled when viewing a live stream. 
 
 ## Live Streams
 
@@ -89,14 +89,19 @@ The `VideeoStreamDelegate` allows the host app to react to events that happen in
 /// The default behavior will show the product details in a web view.
 /// To override, simply return your own custom UIViewController.
 /// - Parameter product: The product that has been selected.
-/// - Returns: A view controller to show when a product in the botton tray is tapped.
-/// If no view controller is provided, then a selected product will be shown in a web view..
-func productTapped(product: VideeoProduct) -> UIViewController?
+/// - Parameter presenter: A presenter object that can be used to show either a web view or
+/// a custom view for the product details.
+func productTapped(product: VideeoProduct, presenter: ProductPresenter)
 
-/// The closeTapped function will be triggered when the it is time to close the stream viewer.
+/// The cartTapped function will be triggered when the user taps on the cart button.
+/// To get the cart button to appear, set the showCartButton to true in the VideeoConfig.
+/// - Parameter presenter: A presenter object that can be called to show a custom cart view.
+func cartTapped(presenter: CartPresenter)
+
+/// The close function will be triggered when the it's time to close the stream viewer.
 /// Since the host app has presented the stream viewer, the host app will be responsible
 /// to close the stream viewer in the appropriate manner.
-func closeTapped()
+func close()
 
 /// A guest user has performed an action that requires authentication, like trying to comment
 /// on a live stream.  This delegate function provides an opportunity for the host app
@@ -117,10 +122,7 @@ func userRemovedFromLive() -> Bool
 
 ## Replay Streams
 
-Replays are Videeo streams saved for later consumption. To display the list of replays, there are two options. 
-- Call `getReplaysViewController` or `getReplaysView` to get a UIViewController or SwiftUI view respectively. This replays view will display the list of replays. When the user taps on a replay, the stream viewer will automatically be shown, allowing the user to watch the selected replay.
-
-- Call `getReplayStreams` to get a page of replays that the host app can use to displays it's own list of replays. Each page consists of a boolean indicating if there are additional replays left to be read and an array of `VideeoStream` objects. The last `VideeoStream` object can be used to read the next page of replays. When a replay is selected `getReplayViewController` or `getReplayView` can be used to get the stream viewer to display the replay.
+Replays are Videeo streams saved for later consumption. Call `getReplayStreams` to get a page of replay data, that the host app can use to displays it's own list of replays. Each page consists of a boolean indicating if there are additional replays left to be read and an array of `VideeoStream` objects. The last `VideeoStream` ID can be used to read the next page of replays. When a replay is selected `getReplayViewController` or `getReplayView` can be used to get the stream viewer to display the replay.
 
 ## Example Integrations
 
