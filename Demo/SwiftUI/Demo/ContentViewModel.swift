@@ -14,9 +14,9 @@ class ContentViewModel: ObservableObject {
 }
 
 extension ContentViewModel: VideeoStreamDelegate {
-    func productTapped(product: VideeoProduct) -> UIViewController? {
-        return nil
-    }
+    func productTapped(product: VideeoProduct, presenter: ProductPresenter) {}
+
+    func cartTapped(presenter: CartPresenter) {}
 
     func close() {
         showLiveStream = false

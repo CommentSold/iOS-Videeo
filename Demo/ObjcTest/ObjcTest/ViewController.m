@@ -21,8 +21,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo" environment:VideeoEnvironmentTest allowsPictureInPicturePlayback:true];
-    
+    VideeoConfig *config = [[VideeoConfig alloc] initWithShopID:@"jaredvideeo"
+                                                         locale:@"en"
+                                                       currency:@"usd"
+                                                    environment:VideeoEnvironmentTest
+                                 allowsPictureInPicturePlayback:YES
+                                                 showCartButton:YES];
+
     VideeoUser *user = [[VideeoUser alloc] initWithFirstName:@"Jared"
                                                     lastName:@"Green"
                                                   profileURL:@"https://picsum.photos/200"
@@ -71,18 +76,14 @@
 }
 
 - (IBAction)showReplays:(id)sender {
-    NSError *error;
-    UIViewController *vc = [[VideeoManager instance] getReplaysViewControllerWithDelegate:self error:&error];
-
-    if (error == nil) {
-        vc.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:vc animated:true completion:nil];
-    } else {
-        NSLog(@"%@", error.localizedDescription);
-    }
+    //TODO: How do we handle replays now that the Videeo SDK does not include any replay UI?
 }
 
-- (UIViewController*)productTappedWithProduct:(id<VideeoProduct> _Nonnull)product {
+- (void)productTappedWithProduct:(id<VideeoProduct> _Nonnull)product presenter:(id<ProductPresenter> _Nonnull)presenter {}
+
+- (void)cartTappedWithPresenter:(id<CartPresenter> _Nonnull)presenter {}
+
+- (UIViewController * _Nullable)cartTapped {
     return nil;
 }
 
