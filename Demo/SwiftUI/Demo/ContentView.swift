@@ -41,7 +41,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
             }
             .fullScreenCover(isPresented: $showReplays) {
-                try? VideeoManager.instance.getReplaysView(delegate: contentViewModel)
+                //TODO: How do we handle replays now that the Videeo SDK does not include any replay UI?
             }
     }
 }
